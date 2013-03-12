@@ -8,7 +8,8 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , form = require('./routes/form_submission');
+  , register = require('./routes/register')
+  , bugreporter = require('./routes/bugreporter');
 
 var app = express();
 
@@ -30,9 +31,10 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/users', user.list);
-app.get('/form_submission', form.myForm);
-
-app.post('/form_submission', form.formResults);
+app.get('/register', register.registration)
+app.post('/register', register.confirmation)
+app.get('/bug_report', bugreporter.bugReporting);
+app.post('/bug_report', bugreporter.reportResults);
 
 
 http.createServer(app).listen(app.get('port'), function(){

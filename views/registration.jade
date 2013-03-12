@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div
+    form(method='post',action='')
+        label(for='user') User Name:
+        br/
+        input(type='text',name='user',id='user',required, value=givenUser)
+        br/
+        label(for='password') Password:
+        br/
+        if(invalidPword)
+            input(type='password',name='password',id='password',required,placeholder='Passwords did not match')
+        else
+            input(type='password',name='password',id='password',required))
+        br/
+        label(for='passwordConfirmation') Confirm Password:
+        br/
+        input(type='password',name='passwordConfirmation',id='passwordConfirmation', required)
+        br/
+        input(type='submit',name='submit',value='Submit').submit-button
+    br/
+    a(href='http://localhost:3000/') Return
