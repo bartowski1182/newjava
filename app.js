@@ -13,6 +13,13 @@ var express = require('express')
 
 var app = express();
 
+
+var databaseUrl = "mydb";
+var collections = ["users", "bugs"];
+var db = require("mongojs").connect(databaseUrl, collections);
+
+
+
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
