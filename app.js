@@ -9,7 +9,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , register = require('./routes/register')
-  , bugreporter = require('./routes/bugreporter');
+  , bugreporter = require('./routes/bugreporter')
+  , login = require('./routes/login');
 
 var app = express();
 
@@ -42,6 +43,8 @@ app.get('/register', register.registration)
 app.post('/register', register.confirmation)
 app.get('/bug_report', bugreporter.bugReporting);
 app.post('/bug_report', bugreporter.reportResults);
+app.get('/login_page', login.showLogin);
+app.post('/login_page', login.confirmation);
 
 
 http.createServer(app).listen(app.get('port'), function(){

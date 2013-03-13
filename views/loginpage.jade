@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  p Please log in
+  div
+    form(action="/login_page", method="post")
+        div.control-group.input-append
+            input(type="text", name="user", id="user")
+            label.add-on(for="username") Username
+        div.control-group.input-append
+            input(type="password", name="password", id = "password")
+            label.add-on(for="password") Password 
+        input(type='submit',name='submit',value='Submit').submit-button
+        p This is definitely doing something!
