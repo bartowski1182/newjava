@@ -3,14 +3,15 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  -if(invalidPword)
+    div.alert-error Username and Password don't match
   p Please log in
   div
     form(action="/login_page", method="post")
         div.control-group.input-append
-            input(type="text", name="user", id="user")
+            input(type="text", name="user", id="user", required)
             label.add-on(for="username") Username
         div.control-group.input-append
-            input(type="password", name="password", id = "password")
+            input(type='password',name='password',id='password',required))
             label.add-on(for="password") Password 
         input(type='submit',name='submit',value='Submit').submit-button
-        p This is definitely doing something!
