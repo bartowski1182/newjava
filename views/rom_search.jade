@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  div
+    form(method='post',action='')
+        label(for='search') Enter ROM name for search:
+        br/
+        input(type='text',name='name',id='name', placeholder = norom)
+        br/
+        input(type='submit',name='submit',value='Submit').submit-button
+    br/

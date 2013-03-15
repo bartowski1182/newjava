@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1 #{username}'s Account
+  p Welcome #{username}
+  p Your password is #{password}
+  p Your account is of type #{accountType}
+  form(action="/logout", method="post")
+        button(type="submit") Logout

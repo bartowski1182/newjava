@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  div
+    form(method='post',action='/saved')
+        label(for='name') Old ROM Name:
+        br/
+        input(type='text',name='name',id='name', value = rname, readonly)
+        br/        
+        label(for='name') New ROM Name:
+        br/
+        input(type='text',name='newname',id='newname', value = rname)
+        br/
+        label(for='description') Description:
+        br/
+        textarea(rows = '5', cols = '40', name='description', wrap='hard') #{rdescription}
+        br/
+        input(type='submit',name='submit',value='Submit').submit-button
+    br/

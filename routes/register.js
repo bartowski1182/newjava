@@ -17,7 +17,7 @@ exports.confirmation = function(req, res){
     else{
       if(validate_password(req.body.password, req.body.passwordConfirmation)){
         res.render('userInfo', {title: 'User Info', user: req.body.user, password: req.body.password, passwordConfirmation: req.body.passwordConfirmation});
-        db.users.save({username: req.body.user, password: req.body.password}, function (err, saved){
+        db.users.save({username: req.body.user, password: req.body.password, userType: "Mod"}, function (err, saved){
          if( err || !saved ) console.log("User not saved");
          else console.log("User saved");
         });
