@@ -11,7 +11,8 @@ var express = require('express')
   , register = require('./routes/register')
   , bugreporter = require('./routes/bugreporter')
   , login = require('./routes/login')
-  , account = require('./routes/account');
+  , account = require('./routes/account')
+  , rom = require('./routes/rom');
 
 var app = express();
 
@@ -73,8 +74,15 @@ app.post('/account', account.showAccount);
 
 app.post('/logout', function(req, res){
   account.logout(req, res);
-  res.redirect('/');
+  //res.redirect('/');
 });
+
+app.get('/rom_submission', rom.submission);
+app.post('/rom_submission', rom.saveROM);
+app.get('/search', rom.search);
+app.post('/search', rom.displaysearch);
+app.post('/editrom', rom.editROM);
+app.post('/saved', rom.saveEdit);
 
 
 http.createServer(app).listen(app.get('port'), function(){

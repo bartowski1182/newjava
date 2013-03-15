@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  form(method='post',action='/editrom')
+    label(for = 'rname') ROM Name:
+    br/
+    input(type='text', name = 'rname', id = 'rname', value = name, readonly)
+    br/
+    label(for = 'description') ROM Description:
+    br/
+    textarea(rows = '5', cols = '40', name='description', wrap='hard', readonly) #{description}
+    br/
+  
+    input(type='submit',name='edit',value='Edit').submit-button
+  br/

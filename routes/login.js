@@ -15,7 +15,6 @@ exports.confirmation = function (req, res) {
           req.session.username = users.username;
           req.session.password = users.password;
           req.session.userType = users.userType;
-          console.log("Redirecting to /account");
           res.redirect('/account');
   				//return next();
           //res.render('account', {title: 'Account', username: users.username, password: users.password});
