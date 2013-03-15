@@ -10,7 +10,8 @@ var express = require('express')
   , path = require('path')
   , register = require('./routes/register')
   , bugreporter = require('./routes/bugreporter')
-  , login = require('./routes/login');
+  , login = require('./routes/login')
+  , account = require('./routes/account');
 
 var app = express();
 
@@ -29,6 +30,8 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
+  app.use(express.cookieParser());
+  app.use(express.session({ secret: 'keyboard cat'}));
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
   app.use(express.static(path.join(__dirname, 'public')));
@@ -38,14 +41,40 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
+app.get('/', function(req, res) {
+  if(req.session.username)
+    routes.index(req, res, true);
+  else
+    routes.index(req, res, false);
+});
 app.get('/users', user.list);
 app.get('/register', register.registration)
 app.post('/register', register.confirmation)
 app.get('/bug_report', bugreporter.bugReporting);
 app.post('/bug_report', bugreporter.reportResults);
-app.get('/login_page', login.showLogin);
+
+app.get('/login_page', function(req, res) {
+  if(req.session.username && req.session.password)
+    res.redirect('/account');
+  else
+    login.showLogin(req, res);
+});
+
 app.post('/login_page', login.confirmation);
+app.get('/account', function(req, res) {
+  if (req.session.username && req.session.password) {
+    account.showAccount(req, res);
+  }
+  else
+    res.redirect('/login_page');
+});
+
+app.post('/account', account.showAccount);
+
+app.post('/logout', function(req, res){
+  account.logout(req, res);
+  res.redirect('/');
+});
 
 
 http.createServer(app).listen(app.get('port'), function(){

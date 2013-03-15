@@ -7,4 +7,8 @@ block content
   br/
   a(href='http://localhost:3000/bug_report') Report a Bug
   br/
-  a(href='http://localhost:3000/login_page') Login
+
+  if(isLoggedIn)
+    a(href='http://localhost:3000/account') Account
+  else
+    a(href='http://localhost:3000/login_page') Login

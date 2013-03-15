@@ -12,7 +12,13 @@ exports.confirmation = function (req, res) {
   		if (!users || err) { res.render('loginpage', {title: 'Account', username: req.body.user, password: req.body.password, invalidPword: true});}
   		else {
   			if (validate_password(req.body.password, users.password)) {
-  				res.render('account', {title: 'Account', username: users.username, password: users.password});
+          req.session.username = users.username;
+          req.session.password = users.password;
+          req.session.userType = "Mod";
+          console.log("Redirecting to /account");
+          res.redirect('/account');
+  				//return next();
+          //res.render('account', {title: 'Account', username: users.username, password: users.password});
   			}
   			else {
   				console.log("I don't understand why this is happening");
