@@ -3,6 +3,15 @@ extends layout
 block content
   h1= title
   p Welcome to #{welcome}
+  if(isLoggedIn)
+    a(href='http://localhost:3000/account') Account
+  else
+    a(href='http://localhost:3000/login_page') Login
+  br/
   a(href='http://localhost:3000/register') Register
   br/
   a(href='http://localhost:3000/bug_report') Report a Bug
+  br/
+  a(href='http://localhost:3000/rom_submission') Submit Rom
+  br/
+  a(href='http://localhost:3000/search') Search for a Rom

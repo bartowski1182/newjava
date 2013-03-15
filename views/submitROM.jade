@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  div
+    form(method='post',action='')
+        label(for='name') ROM Name:
+        br/
+        input(type='text',name='name',id='name', placeholder = romexists, required)
+        br/
+        label(for='description') Description:
+        br/
+        textarea(rows = '5', cols = '40', name='description', wrap='hard') #{description}
+        br/
+        input(type='submit',name='submit',value='Submit').submit-button
+        br/
