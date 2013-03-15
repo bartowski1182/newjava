@@ -14,7 +14,7 @@ exports.confirmation = function (req, res) {
   			if (validate_password(req.body.password, users.password)) {
           req.session.username = users.username;
           req.session.password = users.password;
-          req.session.userType = "Mod";
+          req.session.userType = users.userType;
           console.log("Redirecting to /account");
           res.redirect('/account');
   				//return next();
